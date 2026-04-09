@@ -1,5 +1,6 @@
 package com.group.libraryapp.controller.user;
 
+
 import com.group.libraryapp.dto.user.request.UserCreateRequest;
 import com.group.libraryapp.dto.user.request.UserUpdateRequest;
 import com.group.libraryapp.dto.user.response.UserResponse;
@@ -13,6 +14,7 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final JdbcTemplate jdbcTemplate;
 
     public UserController(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -32,7 +34,7 @@ public class UserController {
 
     @PutMapping("/user")
     public void updateUser(@RequestBody UserUpdateRequest request) {
-        userService.updateUser(jdbcTemplate, request);
+        userService.updateUser(request);
     }
 
     @DeleteMapping("/user")
