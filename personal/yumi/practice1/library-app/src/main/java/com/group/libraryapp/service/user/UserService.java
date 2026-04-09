@@ -16,11 +16,11 @@ public class UserService {
         userRepository = new UserRepository(jdbcTemplate);
     }
 
-    public void updateUser(JdbcTemplate jdbcTemplate, UserUpdateRequest request) {
-        if (userRepository.isUserNotExist(jdbcTemplate, request.getId())) {
+    public void updateUser(UserUpdateRequest request) {
+        if (userRepository.isUserNotExist(request.getId())) {
             throw new IllegalArgumentException();
         }
-        userRepository.updateUserName(jdbcTemplate, request.getName(), request.getId());
+        userRepository.updateUserName(request.getName(), request.getId());
     }
 
     public void saveUser(UserCreateRequest request) {
